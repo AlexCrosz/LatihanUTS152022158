@@ -22,5 +22,7 @@ jobs:
 
       - name: Deploy ke EC2
         run: |
-          scp -r * ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
-
+          # Pastikan kita deploy dengan akses sudo ke folder /var/www/html
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
+          scp -r -i ~/.ssh/id_rsa * ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
