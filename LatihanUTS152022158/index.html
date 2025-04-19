@@ -2,69 +2,51 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" type="text/css" href="/my-blog/style.css">
-  <title>Blog Pribadi Saya</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Alex</title>
   <style>
     body {
+      background: #0f0f0f;
+      color: #ffa500;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #4a90e2;
-      color: white;
       padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px #222;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
       text-align: center;
-    }
-    main {
-      padding: 2rem;
-      max-width: 800px;
-      margin: auto;
-    }
-    article {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    h2 {
-      color: #4a90e2;
-    }
-    footer {
-      text-align: center;
+      background: #1a1a1a;
       padding: 1rem;
-      background: #eee;
-      font-size: 0.9rem;
-      color: #666;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255,165,0,0.3);
+    }
+
+    .glow {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #ffa500, 0 0 10px #ff8c00;
+      }
+      to {
+        text-shadow: 0 0 20px #ffa500, 0 0 30px #ff8c00;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Selamat Datang di Blog Saya</h1>
-    <p>Catatan pribadi, teknologi, dan belajar cloud!</p>
-  </header>
-  <main>
-    <article>
-      <h2>📌 Pertama kali deploy blog di EC2</h2>
-      <p>Ini adalah posting pertama saya yang langsung ditampilkan dari EC2! Apache berhasil di-setup, dan ini halaman statis pertama saya. 🔥</p>
-    </article>
-    <article>
-      <h2>🗂 Backup ke S3</h2>
-      <p>Saya juga sudah menyiapkan bucket S3 sebagai tempat backup semua file blog. Aman dan bisa diakses kapan saja.</p>
-    </article>
-    <article>
-      <h2>🔄 CI/CD Coming Soon!</h2>
-      <p>Rencana selanjutnya, saya akan integrasikan GitHub dengan pipeline CI/CD agar proses update blog jadi otomatis. Stay tuned!</p>
-    </article>
-  </main>
-  <footer>
-    &copy; 2025 Blog Pribadi Saya – Dibuat dengan semangat di atas awan ☁️
-  </footer>
+  <h1 class="glow">Selamat Datang di Blog Alex 🚀</h1>
+  <p>Blog ini sedang dalam tahap pengembangan. Stay tuned untuk konten menarik seputar teknologi cloud dan pemrograman!</p>
 </body>
 </html>
-
