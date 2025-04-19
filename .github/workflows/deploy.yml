@@ -35,3 +35,11 @@ jobs:
       - name: Set permission pada file di EC2
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
+
+      - name: Deploy ke EC2 via SSH
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com << 'EOF'
+            sudo rm -rf /var/www/html/*
+            sudo cp -r ~/LatihanUTS152022158/* /var/www/html/
+            sudo systemctl restart httpd
+          EOF
