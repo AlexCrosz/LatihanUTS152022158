@@ -32,6 +32,6 @@ jobs:
         run: |
           rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
 
-      - name: Set ownership dan permissions di server
+      - name: Deploy dengan sudo dan set permission
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
