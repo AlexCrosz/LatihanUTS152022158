@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout kode dari GitHub
+      - name: Checkout kode
         uses: actions/checkout@v3
 
       - name: Setup SSH Key
@@ -22,21 +22,20 @@ jobs:
 
       - name: Pastikan folder /var/www/html/ ada
         run: |
-          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo mkdir -p /var/www/html"
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo mkdir -p /var/www/html/"
 
       - name: Hapus file lama di /var/www/html/
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
 
-      - name: Deploy file ke EC2 menggunakan rsync + sudo
+      - name: Deploy isi folder LatihanUTS152022158 ke EC2
         run: |
-          rsync -avz \
-            --exclude='.git*' \
-            --exclude='.github*' \
-            -e "ssh -i ~/.ssh/id_rsa" ./ \
-            ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/ \
-            --rsync-path="sudo rsync"
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./LatihanUTS152022158/ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/ --rsync-path="sudo rsync"
 
-      - name: Restart Apache di EC2
+      - name: Set permission pada file di EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/"
+
+      - name: Restart Apache
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo systemctl restart httpd"
