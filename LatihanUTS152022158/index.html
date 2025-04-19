@@ -1,52 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Alex</title>
-  <style>
-    body {
-      background: #0f0f0f;
-      color: #ffa500;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px #222;
-    }
-
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      text-align: center;
-      background: #1a1a1a;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255,165,0,0.3);
-    }
-
-    .glow {
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 5px #ffa500, 0 0 10px #ff8c00;
-      }
-      to {
-        text-shadow: 0 0 20px #ffa500, 0 0 30px #ff8c00;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #ff6f61;
+        }
+        .profile-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .profile-info div {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .profile-info div:last-child {
+            margin-right: 0;
+        }
+        .profile-info h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .profile-info p {
+            font-size: 1.1em;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
 </head>
 <body>
-  <h1 class="glow">Selamat Datang di Blog Alex 🚀</h1>
-  <p>Blog ini sedang dalam tahap pengembangan. Stay tuned untuk konten menarik seputar teknologi cloud dan pemrograman!</p>
+
+    <div class="container">
+        <div class="header">
+            <h1>Selamat datang di Profil Saya!</h1>
+            <p>Ini adalah halaman profil saya yang lebih modern dan keren!</p>
+        </div>
+        <div class="profile-info">
+            <div>
+                <h2>Nama</h2>
+                <p>Alex Kasep</p>
+            </div>
+            <div>
+                <h2>Posisi</h2>
+                <p>Web Developer</p>
+            </div>
+            <div>
+                <h2>Email</h2>
+                <p>alex@example.com</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2025 Alex Kasep. All Rights Reserved.</p>
+        </div>
+    </div>
+
 </body>
 </html>
