@@ -28,10 +28,10 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
 
-      - name: Deploy ke EC2 menggunakan rsync
+      - name: Deploy ke EC2 menggunakan rsync dengan sudo
         run: |
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/ --rsync-path="sudo rsync"
 
-      - name: Deploy dengan sudo dan set permission
+      - name: Set permission pada file di EC2
         run: |
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
