@@ -22,7 +22,14 @@ jobs:
 
       - name: Deploy ke EC2
         run: |
-          # Pastikan kita deploy dengan akses sudo ke folder /var/www/html
+          # Pastikan folder /var/www/html/ ada
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo mkdir -p /var/www/html/"
+
+          # Hapus file lama di /var/www/html/ (gunakan sudo)
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
-          scp -r -i ~/.ssh/id_rsa * ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
+
+          # Gunakan rsync untuk deploy file
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
+
+          # Set ownership jika perlu (gunakan sudo)
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
