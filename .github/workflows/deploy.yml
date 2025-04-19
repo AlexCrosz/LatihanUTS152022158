@@ -20,7 +20,18 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com >> ~/.ssh/known_hosts
 
-      - name: Deploy ke EC2
+      - name: Pastikan folder /var/www/html/ ada
         run: |
-          scp -r * ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo mkdir -p /var/www/html/"
 
+      - name: Hapus file lama di /var/www/html/
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
+
+      - name: Deploy ke EC2 menggunakan rsync dengan sudo
+        run: |
+          rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/ --rsync-path="sudo rsync"
+
+      - name: Set permission pada file di EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
