@@ -28,8 +28,8 @@ jobs:
           # Hapus file lama di /var/www/html/ (gunakan sudo)
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo rm -rf /var/www/html/*"
 
-          # Gunakan rsync untuk deploy file
+          # Gunakan rsync untuk deploy file, dengan sudo di server
           rsync -avz -e "ssh -i ~/.ssh/id_rsa" ./ ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com:/var/www/html/
 
-          # Set ownership jika perlu (gunakan sudo)
+          # Set ownership dan permissions (gunakan sudo)
           ssh -i ~/.ssh/id_rsa ec2-user@ec2-47-129-60-49.ap-southeast-1.compute.amazonaws.com "sudo chown -R ec2-user:ec2-user /var/www/html/*"
