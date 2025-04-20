@@ -3,86 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Saya</title>
+    <title>Alex Palisungan - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --primary: #00f2ff;
+            --primary-dark: #00d9ff;
+            --secondary: #ff2a6d;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #f8f9fa;
+            --neon-glow: 0 0 10px rgba(0, 242, 255, 0.7), 0 0 20px rgba(0, 242, 255, 0.5), 0 0 30px rgba(0, 242, 255, 0.3);
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(0, 242, 255, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 75% 65%, rgba(255, 42, 109, 0.1) 0%, transparent 30%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 5vh auto;
+            position: relative;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            position: relative;
+        }
+
+        /* Header Section */
+        .header {
+            position: relative;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .header h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(248, 249, 250, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: rgba(18, 18, 18, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--neon-glow);
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulse 15s infinite ease-in-out;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .info-item {
+            position: relative;
+        }
+
+        .info-item h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-item h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .info-item p {
+            font-size: 1.2rem;
+            color: var(--light);
+            line-height: 1.5;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-top: 30px;
+        }
+
+        .skills-section h2 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .skill-item p {
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(0, 242, 255, 0.2);
+        }
+
+        .social-links {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            max-width: 800px;
-        }
-        .header {
-            text-align: center;
+            gap: 20px;
             margin-bottom: 20px;
         }
-        .header h1 {
-            color: #ff6f61;
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
-        .profile-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
         }
-        .profile-info div {
-            flex: 1;
-            margin-right: 20px;
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(248, 249, 250, 0.6);
         }
-        .profile-info div:last-child {
-            margin-right: 0;
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
         }
-        .profile-info h2 {
-            font-size: 1.5em;
-            color: #333;
+
+        .glow-button {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        .profile-info p {
-            font-size: 1.1em;
-            color: #555;
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--primary);
+            z-index: -1;
+            transition: width 0.3s ease;
         }
-        .footer {
-            text-align: center;
-            font-size: 0.9em;
-            color: #777;
+
+        .glow-button:hover {
+            color: var(--dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        .glow-button:hover::before {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">
-            <h1>Selamat datang di Profil Saya!</h1>
-            <p>Ini adalah halaman profil saya yang lebih modern dan keren!</p>
+            <h1>Alex Palisungan</h1>
+            <p>Web & Game Developer | Creative Technologist | Digital Designer</p>
         </div>
-        <div class="profile-info">
-            <div>
-                <h2>Nama</h2>
-                <p>Alex Palisungan</p>
-            </div>
-            <div>
-                <h2>Posisi</h2>
-                <p>Web Developer, Game Developer</p>
-            </div>
-            <div>
-                <h2>Email</h2>
-                <p>alex26gurren@gmail.com</p>
+        
+        <div class="grid-layout">
+            <div class="profile-card">
+                <div class="profile-info">
+                    <div class="info-item">
+                        <h2>Profile</h2>
+                        <p>Creative developer with expertise in building modern web applications and interactive game experiences. Passionate about pushing the boundaries of digital design and technology.</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h2>Specialties</h2>
+                        <p>Web Development, Game Development, UI/UX Design, Interactive Media, Front-end Technologies</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <h2>Contact</h2>
+                        <p>alex26gurren@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="skills-section">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <p>HTML5</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <p>CSS3</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <p>JavaScript</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <p>React</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-unity"></i>
+                            <p>Unity</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-gamepad"></i>
+                            <p>Game Dev</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="glow-button">View Portfolio</button>
+                </div>
             </div>
         </div>
+        
         <div class="footer">
-            <p>&copy; 2025 Alex Palisungan. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 Alex Palisungan. All Rights Reserved.</p>
         </div>
     </div>
-
 </body>
 </html>
